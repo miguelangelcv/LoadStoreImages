@@ -16,7 +16,6 @@ namespace LoadStoreImages.ViewModels
     public class MainViewModel : ViewModelBase
     {
         #region Variables
-        ImageStorage imgStorage;
         private string url;
         private string internetImage;
         private ObservableCollection<string> files;
@@ -113,7 +112,6 @@ namespace LoadStoreImages.ViewModels
 
         public MainViewModel()
         {
-            imgStorage = new ImageStorage();
             files = new ObservableCollection<string>();
             downloadButtonCommand = new Lazy<DelegateCommand<string>>(
                () =>
@@ -124,14 +122,14 @@ namespace LoadStoreImages.ViewModels
         private async void LoadImage(string selectedImage)
         {
             if (selectedImage != null)
-                StoredImage = await imgStorage.LoadImageFromStorage(selectedImage);
+                StoredImage = await ImageStorage.Instance.LoadImageFromStorage(selectedImage);
         }       
 
         private async void DownloadImage(string url)
         {
             InternetImage = url;
-            await imgStorage.StoreImageFromURL(url);
-            StoredImage = await imgStorage.LoadImageFromStorage(Path.GetFileName(url));
+            await ImageStorage.Instance.StoreImageFromURL(url);
+            StoredImage = await ImageStorage.Instance.LoadImageFromStorage(Path.GetFileName(url));
             MessageDialog msgDialog = new MessageDialog("Download Completed");
             await msgDialog.ShowAsync();
             GetFiles(Windows.Storage.ApplicationData.Current.LocalFolder);

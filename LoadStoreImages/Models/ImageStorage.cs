@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Runtime.InteropServices.WindowsRuntime;
-using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Streams;
@@ -14,7 +11,20 @@ using Windows.UI.Xaml.Media.Imaging;
 namespace LoadStoreImages.Models
 {
     public class ImageStorage
-    {
+    {        
+        // private to prevent direct instantiation.
+        private ImageStorage() { }
+
+        //static holder for instance, need to use lambda to construct since constructor private
+        private static readonly Lazy<ImageStorage> instance
+            = new Lazy<ImageStorage>(() => new ImageStorage());
+
+        // accessor for instance
+        public static ImageStorage Instance
+        {
+            get { return instance.Value; }
+        }
+
         public async Task<BitmapImage> LoadImageFromStorage(string fileName)
         {
             byte[] bytes = null;
