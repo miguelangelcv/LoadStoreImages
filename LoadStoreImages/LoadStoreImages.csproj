@@ -97,9 +97,9 @@
     </Compile>
     <Compile Include="Models\ImageStorage.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="Views\Base\DelegateCommand.cs" />
-    <Compile Include="Views\Base\ViewModelBase.cs" />
-    <Compile Include="Views\Base\ViewModelLocator.cs" />
+    <Compile Include="ViewModels\Base\DelegateCommand.cs" />
+    <Compile Include="ViewModels\Base\ViewModelBase.cs" />
+    <Compile Include="ViewModels\Base\ViewModelLocator.cs" />
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>

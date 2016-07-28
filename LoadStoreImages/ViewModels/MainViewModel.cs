@@ -23,12 +23,6 @@ namespace LoadStoreImages.ViewModels
         private string selectedImage;
         #endregion
 
-
-        #region Commands
-        private Lazy<DelegateCommand<string>> downloadButtonCommand;
-        #endregion
-
-
         #region Properties
         public string Url
         {
@@ -80,6 +74,10 @@ namespace LoadStoreImages.ViewModels
                 RaisePropertyChanged();
             }
         }
+        #endregion
+        
+        #region Commands
+        private Lazy<DelegateCommand<string>> downloadButtonCommand;
         #endregion
 
         public ICommand DownloadButtonCommand
